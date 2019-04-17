@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setUserActionCreator } from './state/users'
 
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -9,12 +8,6 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 
 const Users = (props) => {
-    if (props._users === null) {
-        fetch('https://randomuser.me/api?results=5')
-            .then(response => response.json())
-            .then(data => props._setUsers(data.results))
-    }
-
     return (
         <div>
             <List>
@@ -49,11 +42,7 @@ const mapStoreToProps = state => (
     }
 )
 
-const mapDispatchToProps = dispatch => (
-    {
-        _setUsers: (users) => dispatch(setUserActionCreator(users))
-    }
-)
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(
     mapStoreToProps,
