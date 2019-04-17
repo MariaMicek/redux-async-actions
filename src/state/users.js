@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         case SET:
             return {
                 ...state,
-                users: action.users,
+                users: state.users.concat(action.users),
             }
         default:
             return state
