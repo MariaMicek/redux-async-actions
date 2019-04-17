@@ -1,6 +1,6 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
-import usersReducer from './state/users'
+import usersReducer, {fetchUsersAsyncActionCreator} from './state/users'
 
 const reducer = combineReducers(
     {
@@ -16,3 +16,5 @@ export const store = createStore(
         applyMiddleware(thunk)  //dodatek do reduxa, który umożliwia wykonywanie operacji asynchronicznych
     )
 )
+
+store.dispatch(fetchUsersAsyncActionCreator())
