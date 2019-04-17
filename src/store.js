@@ -17,4 +17,4 @@ export const store = createStore(
     )
 )
 
-store.dispatch(fetchUsersAsyncActionCreator())
+store.dispatch(fetchUsersAsyncActionCreator(10))
