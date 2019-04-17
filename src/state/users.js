@@ -8,7 +8,7 @@ export const setUserActionCreator = users => (
 )
 
 const initialState = {
-    users: [],
+    users: null,
 }
 
 export default (state = initialState, action) => {
@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         case SET:
             return {
                 ...state,
-                users: state.users.concat(action.users),
+                users: action.users,
             }
         default:
             return state

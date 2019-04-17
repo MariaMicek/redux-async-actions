@@ -3,16 +3,34 @@ import { connect } from 'react-redux'
 import { setUserActionCreator } from './state/users'
 
 const Users = (props) => {
-    fetch('https://randomuser.me/api?results=3')
-    .then(response => response.json())
-    .then(data => props._setUsers(data.results))   
+    if (props._users === null) {
+        fetch('https://randomuser.me/api?results=5')
+            .then(response => response.json())
+            .then(data => props._setUsers(data.results))
+    }
 
     return (
         <div>
-            users
+            {
+                props._users && props._users.map(
+                    user => (
+                        <div
+                            key={user.login.uuid}
+                        >
+                            {user.name.first + ' ' + user.name.last}
+                        </div>
+                    )
+                )
+            }
         </div>
     )
 }
+
+const mapStoreToProps = state => (
+    {
+        _users: state.usersReducer.users
+    }
+)
 
 const mapDispatchToProps = dispatch => (
     {
@@ -21,6 +39,6 @@ const mapDispatchToProps = dispatch => (
 )
 
 export default connect(
-    null,
+    mapStoreToProps,
     mapDispatchToProps
 )(Users)
